@@ -23,6 +23,44 @@ The verification environment is intentionally class-based and uses:
 
 No physical FPGA board is required for the included functional verification; the DUT is exercised with XSim behavioral simulation.
 
+## How to use
+
+### Prerequisites
+
+- AMD Vivado 2025.2
+- XSim behavioral simulator
+- Linux or Windows system capable of running Vivado
+- No FPGA board is required for the included simulation
+
+### Run the project
+
+1. Clone the repository.
+2. Open `GPIO_interrupt_controller.xpr` in Vivado.
+3. Confirm the RTL sources are under `GPIO_interrupt_controller.srcs/sources_1/new/`.
+4. Confirm the simulation sources are under `GPIO_interrupt_controller.srcs/sim_1/new/`.
+5. Set `tb_gpio_controller` as the simulation top if Vivado does not select it automatically.
+6. Select **Flow Navigator → Simulation → Run Behavioral Simulation**.
+7. Run the simulation for at least 400 ns.
+
+### Expected result
+
+The completed testbench reports results equivalent to:
+
+```text
+PASS: READ DIR = 0x000000ff
+PASS: READ DATA_OUT = 0x000000a5
+INFO: Interrupt configured
+PASS: INT_STATUS = 1
+PASS: IRQ = 1
+PASS: INT_STATUS CLEARED
+PASS: IRQ CLEARED
+======================================
+ GPIO INTERRUPT TEST COMPLETE
+======================================
+```
+
+The recorded verification run completed normally at approximately 370 ns.
+
 ## Architecture
 
 ```mermaid
@@ -51,9 +89,46 @@ flowchart LR
 | `0x18` | `INT_STATUS` | RO | Latched/pending interrupt status |
 | `0x1C` | `INT_CLEAR` | WO | Write `1` to clear a pending bit |
 
-## Interrupt verification sequence
+## Using the GPIO peripheral
 
-The final testbench performs a real interrupt transaction sequence:
+Software controls the peripheral through APB register accesses.
+
+For a rising-edge interrupt on GPIO0, the configuration is:
+
+```text
+DIR          = 0x00
+INT_TYPE     = 0x01
+INT_POLARITY = 0x01
+INT_ENABLE   = 0x01
+```
+
+Then an external transition:
+
+```text
+GPIO0: 0 -> 1
+```
+
+causes:
+
+```text
+INT_STATUS[0] = 1
+IRQ           = 1
+```
+
+To clear the pending interrupt:
+
+```text
+INT_CLEAR[0] = 1
+```
+
+which results in:
+
+```text
+INT_STATUS[0] = 0
+IRQ           = 0
+```
+
+## Interrupt verification sequence
 
 ```text
 DIR = 0                     -> GPIO0 configured as input
@@ -103,8 +178,6 @@ PASS: IRQ CLEARED
 ======================================
 ```
 
-The simulation finished normally at approximately `370 ns`.
-
 See `evidence/final_waveform.png` for the full waveform and `evidence/simulation_pass.txt` for the captured console result.
 
 ## What is covered
@@ -118,6 +191,28 @@ See `evidence/final_waveform.png` for the full waveform and `evidence/simulation
 - Sticky interrupt status
 - Aggregated IRQ output
 - Write-one-to-clear behavior
+
+## Repository structure
+
+```text
+GPIO_interrupt_controller/
+├── README.md
+├── GPIO_interrupt_controller.xpr
+├── GPIO_interrupt_controller.srcs/
+│   ├── sources_1/new/       # RTL design
+│   └── sim_1/new/           # Class-based verification environment
+├── docs/
+│   ├── DESIGN_AND_VERIFICATION.md
+│   ├── LEARNING_AND_DEBUG_NOTES.md
+│   ├── GPIO_Interrupt_Controller_Design_and_Verification.pdf
+│   ├── GPIO_Interrupt_Controller_Learning_and_Debug_Guide.pdf
+│   └── GITHUB_UPLOAD_STEPS.md
+├── evidence/
+│   ├── final_waveform.png
+│   ├── zoomed_waveform.png
+│   └── simulation_pass.txt
+└── tb_gpio_controller_behav.wcfg
+```
 
 ## Known non-functional warnings
 
@@ -133,31 +228,3 @@ The debugging process is documented in `docs/DESIGN_AND_VERIFICATION.md` and `do
 - AMD Vivado 2025.2
 - XSim behavioral simulator
 - Linux / Fedora development environment
-
-## Suggested repository layout
-
-```text
-GPIO_interrupt_controller/
-├── README.md
-├── rtl/                         # optional clean organization
-│   ├── gpio_controller.sv
-│   ├── gpio_registers.sv
-│   ├── gpio_interrupt.sv
-│   └── gpio_io.sv
-├── tb/                          # optional clean organization
-│   ├── tb_gpio_controller.sv
-│   ├── gpio_interface.sv
-│   ├── gpio_transaction.sv
-│   ├── gpio_generator.sv
-│   ├── gpio_driver.sv
-│   ├── gpio_monitor.sv
-│   └── gpio_scoreboard.sv
-├── docs/
-│   ├── DESIGN_AND_VERIFICATION.md
-│   └── LEARNING_AND_DEBUG_NOTES.md
-└── evidence/
-    ├── final_waveform.png
-    └── simulation_pass.txt
-```
-
-The existing Vivado project can also be committed without reorganizing the source tree immediately; cleanup can be done in a later commit.
