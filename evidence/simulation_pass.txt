@@ -1,0 +1,13 @@
+Final XSim functional verification evidence
+
+PASS: READ DIR = 0x000000ff
+PASS: READ DATA_OUT = 0x000000a5
+INFO: Interrupt configured
+PASS: INT_STATUS = 1
+PASS: IRQ = 1
+PASS: INT_STATUS CLEARED
+PASS: IRQ CLEARED
+======================================
+ GPIO INTERRUPT TEST COMPLETE
+======================================
+$finish called at time : 370 ns

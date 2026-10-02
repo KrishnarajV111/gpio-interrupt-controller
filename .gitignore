@@ -1,0 +1,55 @@
+# Vivado / Xilinx generated files
+*.cache/
+*.hw/
+*.runs/
+*.sim/
+*.gen/
+*.ip_user_files/
+.Xil/
+
+# Generated synthesis / implementation data
+synth_*/
+impl_*/
+webtalk/
+webtalk_*/
+
+# Vivado temporary files
+*.jou
+*.log
+*.str
+*.debug
+*.backup.log
+*.pb
+*.wdb
+
+# Simulation generated output
+xsim.dir/
+*.vcd
+*.wlf
+
+# Generated design/output files
+*.dcp
+*.rpt
+*.bit
+*.bin
+*.mcs
+*.mmi
+*.ltx
+
+# OS/editor clutter
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Keep tracked:
+# *.sv
+# *.xpr
+# README.md
+# docs/
+# evidence/

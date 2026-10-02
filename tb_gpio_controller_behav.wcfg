@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_gpio_controller_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_gpio_controller" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="407.001 ns"></ZoomEndTime>
+      <Cursor1Time time="57.086 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="152"></NameColumnWidth>
+      <ValueColumnWidth column_width="59"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wvobject type="array" fp_name="/tb_gpio_controller/read_data">
+      <obj_property name="ElementShortName">read_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_gpio_controller/vif/irq">
+      <obj_property name="ElementShortName">irq</obj_property>
+      <obj_property name="ObjectShortName">irq</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_gpio_controller/vif/gpio_out">
+      <obj_property name="ElementShortName">gpio_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_out[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_gpio_controller/vif/gpio_oe">
+      <obj_property name="ElementShortName">gpio_oe[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_oe[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_gpio_controller/vif/gpio_in">
+      <obj_property name="ElementShortName">gpio_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_in[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_gpio_controller/vif/PWRITE">
+      <obj_property name="ElementShortName">PWRITE</obj_property>
+      <obj_property name="ObjectShortName">PWRITE</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_gpio_controller/vif/PWDATA">
+      <obj_property name="ElementShortName">PWDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PWDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_gpio_controller/vif/PSLVERR">
+      <obj_property name="ElementShortName">PSLVERR</obj_property>
+      <obj_property name="ObjectShortName">PSLVERR</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_gpio_controller/vif/PSEL">
+      <obj_property name="ElementShortName">PSEL</obj_property>
+      <obj_property name="ObjectShortName">PSEL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_gpio_controller/vif/PRESETn">
+      <obj_property name="ElementShortName">PRESETn</obj_property>
+      <obj_property name="ObjectShortName">PRESETn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_gpio_controller/vif/PREADY">
+      <obj_property name="ElementShortName">PREADY</obj_property>
+      <obj_property name="ObjectShortName">PREADY</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_gpio_controller/vif/PRDATA">
+      <obj_property name="ElementShortName">PRDATA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PRDATA[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_gpio_controller/vif/PENABLE">
+      <obj_property name="ElementShortName">PENABLE</obj_property>
+      <obj_property name="ObjectShortName">PENABLE</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_gpio_controller/vif/PCLK">
+      <obj_property name="ElementShortName">PCLK</obj_property>
+      <obj_property name="ObjectShortName">PCLK</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_gpio_controller/vif/PADDR">
+      <obj_property name="ElementShortName">PADDR[7:0]</obj_property>
+      <obj_property name="ObjectShortName">PADDR[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_gpio_controller/vif/NUM_PINS">
+      <obj_property name="ElementShortName">NUM_PINS[31:0]</obj_property>
+      <obj_property name="ObjectShortName">NUM_PINS[31:0]</obj_property>
+   </wvobject>
+</wave_config>
